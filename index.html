@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SeokYeong Lee</title>
+<meta name="description" content="SeokYeong Lee, postdoctoral researcher at KAIST AI working on 3D reconstruction, inverse rendering and 3D perception under unconstrained conditions.">
+<style>
+/* VOICE  personal academic homepage in the AcademicPages manner: quiet, text-first, friendly
+   IDEA   a researcher's own page: sidebar profile card + one reading column
+   PICTURE square profile photo slot; small per-paper thumbnails (placeholders until real teaser figures are added)
+   COLOUR white, warm grey ink, one teal link colour, soft yellow only for honours
+   TYPE   system sans throughout
+   LAYOUT top bar; sticky profile column left, content right; phone stacks profile above content */
+:root{color-scheme:light dark;
+--bg:light-dark(#ffffff,#16181d);--ink:light-dark(#3d4144,#d9dce0);--head:light-dark(#1f2326,#f3f4f6);--mute:light-dark(#7a8288,#9aa0a6);
+--link:light-dark(#2a7d92,#6cc3d8);--line:light-dark(#e6e8ea,#2c2f36);--soft:light-dark(#f4f6f7,#1f2228);
+--hi:light-dark(#fff3cf,#3a3219);--hiink:light-dark(#7a4f00,#ffd479)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;overflow-x:clip}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+a:focus-visible,button:focus-visible{outline:2px solid var(--link);outline-offset:2px;border-radius:3px}
+.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.top .in{max-width:1180px;margin:0 auto;padding:0 max(3vw,16px);display:flex;flex-wrap:wrap;align-items:center;gap:0 22px;min-height:56px}
+.top .nm{font-weight:700;color:var(--head);margin-right:auto}
+.top nav{display:flex;flex-wrap:wrap;gap:0 20px;font-size:15px}
+.top nav a{color:var(--mute);padding:14px 0}
+.top nav a:hover{color:var(--head);text-decoration:none}
+.page{max-width:1180px;margin:0 auto;padding:40px max(3vw,16px) 64px;display:grid;grid-template-columns:240px minmax(0,1fr);gap:56px}
+aside{position:sticky;top:96px;align-self:start;font-size:14px}
+.av{width:180px;aspect-ratio:1;border-radius:8px;display:grid;place-items:center;background:var(--soft);border:1px solid var(--line);color:var(--mute);font-size:44px;font-weight:700;letter-spacing:-.02em;overflow:hidden}
+.av img{width:100%;height:100%;object-fit:cover;display:block}
+aside h2{font-size:22px;color:var(--head);margin:16px 0 2px;line-height:1.2}
+aside .af{color:var(--mute);margin:0 0 14px}
+aside ul{list-style:none;margin:0;padding:0}
+aside li{display:flex;gap:10px;align-items:center;padding:4px 0}
+aside li svg{width:16px;height:16px;flex:none;fill:var(--mute)}
+aside li span{color:var(--ink)}
+main section{margin-bottom:48px}
+h1{font-size:clamp(26px,3vw,32px);color:var(--head);margin:0 0 16px;line-height:1.2;letter-spacing:-.01em}
+h2.s{font-size:24px;color:var(--head);margin:0 0 18px;padding-bottom:8px;border-bottom:1px solid var(--line);line-height:1.25}
+main p{margin:0 0 14px;max-width:72ch}
+main p b{color:var(--head)}
+.modes{display:flex;flex-wrap:wrap;gap:6px;margin:-4px 0 8px}
+.modes button{font:inherit;font-size:14px;min-height:36px;padding:0 13px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);cursor:pointer}
+.modes button[aria-pressed=true]{background:var(--head);color:var(--bg);border-color:var(--head)}
+.grp{font-size:18px;color:var(--head);margin:26px 0 4px;display:flex;gap:8px;align-items:baseline}
+.grp span{font-size:14px;color:var(--mute);font-weight:400}
+.pub{display:grid;grid-template-columns:190px minmax(0,1fr);gap:20px;padding:16px 0;border-bottom:1px solid var(--line)}
+.th{border-radius:6px;overflow:hidden;background:var(--soft);aspect-ratio:16/10}
+.th svg{display:block;width:100%;height:100%}
+.th.im{background:#fff;border:1px solid var(--line)}
+.th img{display:block;width:100%;height:100%;object-fit:contain}
+.pub h3{font-size:16.5px;color:var(--head);margin:0 0 4px;line-height:1.35}
+.pub .au{font-size:15px;margin:0}
+.pub .au b{color:var(--head)}
+.pub .vn{font-size:15px;margin:2px 0 0;color:var(--mute);font-style:italic}
+.pub .vn.ac{color:var(--head);font-style:normal;font-weight:600}
+.pl{display:flex;flex-wrap:wrap;gap:4px 6px;margin-top:8px;font-size:13.5px}
+.pl a,.pl button{font:inherit;display:inline-block;padding:2px 9px;border:1px solid var(--line);border-radius:4px;color:var(--link);background:none;cursor:pointer;line-height:1.6}
+.pl a:hover,.pl button:hover{border-color:var(--link);text-decoration:none}
+.pl em{color:var(--mute);font-size:13px;align-self:center;margin-left:4px}
+.pub pre{grid-column:2;margin:4px 0 0;padding:10px 12px;background:var(--soft);border-radius:6px;font-size:12.5px;line-height:1.5;overflow-x:auto}
+.dom{margin-top:22px;font-size:14.5px;color:var(--mute)}
+.dom ul{margin:6px 0 0;padding-left:18px}
+.dom li span{color:var(--ink)}
+.org{list-style:none;margin:0;padding:0}
+.org li{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:4px 16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.lg{width:44px;height:44px;border-radius:10px;display:grid;place-items:center;color:#fff;font-weight:700;font-size:12.5px;letter-spacing:-.01em}
+.org h3{font-size:16px;color:var(--head);margin:0;line-height:1.35}
+.org .r{margin:2px 0 0;font-size:15px}
+.org .x{margin:2px 0 0;font-size:14px;color:var(--mute)}
+.org .d{font-size:14px;color:var(--mute);white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums}
+.hon{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.hon span{background:var(--hi);color:var(--hiink);font-weight:600;font-size:13.5px;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.hon span.q{background:var(--soft);color:var(--ink);font-weight:500}
+.pat{list-style:none;margin:0;padding:0}
+.pat li{padding:14px 0;border-bottom:1px solid var(--line)}
+.pat h3{font-size:16px;color:var(--head);margin:0 0 3px;line-height:1.4}
+.pat .au{margin:0;font-size:15px}
+.pat .au b{color:var(--head)}
+.pno{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.pno span{font-size:13.5px;padding:2px 9px;border:1px solid var(--line);border-radius:4px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.pno b{font-weight:600;color:var(--link);margin-right:4px}
+.pno i{font-style:normal;color:var(--mute);margin-left:4px}
+footer{border-top:1px solid var(--line);color:var(--mute);font-size:13px}
+footer .in{max-width:1180px;margin:0 auto;padding:20px max(3vw,16px)}
+@media(max-width:860px){.page{grid-template-columns:minmax(0,1fr);gap:28px;padding-top:24px}aside{position:static;display:grid;grid-template-columns:112px minmax(0,1fr);gap:4px 18px;align-items:center}.av{width:112px;font-size:30px;grid-row:span 2}aside h2{margin:0}aside .af{margin:0}aside ul{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:0 18px;margin-top:10px}}
+@media(max-width:600px){.top nav{width:100%;overflow-x:auto;flex-wrap:nowrap}.top nav a{flex:none;padding:6px 0 10px}.pub{grid-template-columns:minmax(0,1fr);gap:10px}.th{max-width:320px}.pub pre{grid-column:1}.org li{grid-template-columns:40px minmax(0,1fr)}.org .d{grid-column:2;grid-row:2;text-align:left}.lg{width:40px;height:40px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="in">
+    <a class="nm" href="#about" style="color:var(--head)">SeokYeong Lee</a>
+    <nav aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#publications">Publications</a>
+      <a href="#patents">Patents</a>
+      <a href="#exhibition">Exhibition</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+  <aside>
+    <div class="av"><img src="images/profile.jpg" alt="SeokYeong Lee" width="480" height="480"></div>
+    <h2>SeokYeong Lee</h2>
+    <p class="af">Postdoctoral Researcher<br>KAIST AI</p>
+    <ul>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span>Seoul, Korea</span></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5h20v14H2zm2 2v.5l8 5 8-5V7zm16 2.8-8 5-8-5V17h16z"/></svg><a href="mailto:shapin94@gmail.com">shapin94@gmail.com</a></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3zm-6.5 9.3V16c0 1.9 2.9 3.5 6.5 3.5s6.5-1.6 6.5-3.5v-3.7L12 16l-6.5-3.7z"/></svg><a href="https://scholar.google.com/citations?user=osFHbmYAAAAJ">Google Scholar</a></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5a3.9 3.9 0 0 1 1-2.7c-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7a3.9 3.9 0 0 1 1 2.7c0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg><a href="https://github.com/seokyeong94">GitHub</a></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.1c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4z"/></svg><a href="https://linkedin.com/in/seokyeong-lee">LinkedIn</a></li>
+    </ul>
+  </aside>
+
+  <main>
+    <section id="about">
+      <h1>Hi, I'm SeokYeong Lee 👋</h1>
+      <p>I am a postdoctoral researcher at <b>KAIST AI</b>. I received my Ph.D. in Computer Science from <b>Korea University</b> in 2026, advised by Prof. Seungryong Kim and Prof. Paul Hongsuck Seo, through the academy–industry program with the <b>Korea Institute of Science and Technology (KIST)</b>, where I was also advised by Prof. Ig-Jae Kim.</p>
+      <p>My research focuses on <b>robust 3D perception under unconstrained conditions</b>: few input views, changing illumination, noisy camera poses, and no 3D labels. I have worked on <b>few-shot neural radiance fields</b>, <b>scene-level inverse rendering</b> (decomposing a scene into geometry, material and lighting), and <b>label-free monocular 3D object detection and tracking</b>.</p>
+    </section>
+
+    <section id="publications">
+      <h2 class="s">📖 Publications</h2>
+      <div class="modes" id="modes" role="group" aria-label="Group publications"></div>
+      <div id="pubs"></div>
+      <div class="dom">Domestic conference papers
+        <ul>
+          <li><span>Prediction of Ruptured Intracranial Aneurysm in Angiography using Convolutional Neural Network.</span> Korea Software Congress (KSC) 2017. <b>Excellence Prize</b>, Undergraduate Paper Competition.</li>
+          <li><span>Material Type Recognition using Color Features.</span> Korea Software Congress (KSC) 2017.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="patents">
+      <h2 class="s">📜 Patents</h2>
+      <ul class="pat">
+        <li><h3>Apparatus and Method for Generating Editable Omnidirectional 3D Scenes from Images and Text</h3><p class="au">Junghyun Cho, Mincheol Sagong, JunYong Choi, <b>SeokYeong Lee</b>, YongGyun Kim</p><div class="pno"><span><b>KR</b>10-2024-02019<i>Dec. 2024</i></span><span><b>PCT</b>KR2025/010833<i>Jul. 2025</i></span></div></li>
+        <li><h3>Apparatus and Method for Generating New Viewpoint Image Using Few-shot 2D Images</h3><p class="au">Junghyun Cho, Ig-Jae Kim, <b>SeokYeong Lee</b>, JunYong Choi</p><div class="pno"><span><b>KR</b>10-2872726<i>Oct. 2023</i></span><span><b>US</b>18/393004<i>Dec. 2023</i></span></div></li>
+        <li><h3>Apparatus and Method for Synthesizing 2D Images and Media Using Inverse Rendering with 3D Spatially Varying Lighting Information</h3><p class="au">Junghyun Cho, Ig-Jae Kim, Haesol Park, JunYong Choi, <b>SeokYeong Lee</b></p><div class="pno"><span><b>KR</b>10-2848513<i>Aug. 2023</i></span><span><b>US</b>18/393078<i>Dec. 2023</i></span></div></li>
+        <li><h3>Dynamic Image Capturing Apparatus and Method using Arbitrary Viewpoint Image Generation Technology</h3><p class="au">Junghyun Cho, JunYong Choi, <b>SeokYeong Lee</b>, Ig-Jae Kim</p><div class="pno"><span><b>KR</b>10-2558294<i>Jul. 2023</i></span><span><b>US</b>1159746<i>Dec. 2021</i></span></div></li>
+      </ul>
+    </section>
+
+    <section id="exhibition">
+      <h2 class="s">🖼️ Exhibition</h2>
+      <ul class="org">
+        <li><div class="lg" style="background:#1a1a1a">ACM</div><div><h3>ACM SIGGRAPH 2019 Exhibitions</h3><p class="r">Los Angeles, CA, USA</p><p class="x">IR Surface Reflectance Estimation and Material Type Recognition using Two-stream Net and Kinect Camera<br>Exhibited as an M.S. student, Perception and Computer Vision Lab., Kyung Hee University</p></div><div class="d">Jul. 2019</div></li>
+      </ul>
+    </section>
+
+    <section id="experience">
+      <h2 class="s">🗂️ Experience</h2>
+      <ul class="org">
+        <li><div class="lg" style="background:#004191">KAIST</div><div><h3>KAIST AI</h3><p class="r">Postdoctoral Researcher</p></div><div class="d">2026 – Current</div></li>
+        <li><div class="lg" style="background:#0a6e5c">KIST</div><div><h3>Korea Institute of Science and Technology (KIST)</h3><p class="r">Research Intern, Visual Intelligence Group, AI &amp; Robotics Institute</p><p class="x">Plenoptic image-based view synthesis; point cloud generation with intrinsic properties</p></div><div class="d">Aug. 2020 – Feb. 2021</div></li>
+        <li><div class="lg" style="background:#0a6e5c">KIST</div><div><h3>Korea Institute of Science and Technology (KIST)</h3><p class="r">Undergraduate Intern, Imaging Media Research Center</p><p class="x">Material Fusion: a KinectFusion-style framework with material estimation</p></div><div class="d">Dec. 2017 – Feb. 2018</div></li>
+      </ul>
+    </section>
+
+    <section id="education">
+      <h2 class="s">🎓 Education</h2>
+      <ul class="org">
+        <li><div class="lg" style="background:#8b0029">KU</div><div><h3>Korea University</h3><p class="r">Ph.D. in Computer Science</p><p class="x">Advisors: Prof. Seungryong Kim, Prof. Paul Hongsuck Seo, Prof. Ig-Jae Kim (KIST)<br>Thesis: Robust 3D Perception under Unconstrained, Unlabeled Conditions: from Reconstruction to Detection</p><div class="hon"><span class="q">GPA 4.30 / 4.5</span><span class="q">KIST academy–industry program</span></div></div><div class="d">Mar. 2021 – Mar. 2026</div></li>
+        <li><div class="lg" style="background:#9c1f2e">KHU</div><div><h3>Kyung Hee University</h3><p class="r">M.S. in Computer Science and Engineering</p><p class="x">Advisor: Prof. Seungkyu Lee, Perception and Computer Vision Lab.<br>Thesis: Surface IR Reflectance Estimation and Material Recognition using ToF Camera</p><div class="hon"><span>🏅 Full-tuition Entrance Scholarship</span><span class="q">GPA 4.43 / 4.5</span></div></div><div class="d">Sep. 2018 – Aug. 2020</div></li>
+        <li><div class="lg" style="background:#9c1f2e">KHU</div><div><h3>Kyung Hee University</h3><p class="r">B.S. in Computer Science and Engineering</p><div class="hon"><span>🏅 Summa Cum Laude</span><span class="q">GPA 4.17 / 4.5</span><span class="q">Superior Scholarship ×5</span></div></div><div class="d">Mar. 2014 – Aug. 2018</div></li>
+      </ul>
+    </section>
+  </main>
+</div>
+
+<footer><div class="in">© 2026 SeokYeong Lee</div></footer>
+
+<script>
+{
+const ME='SeokYeong Lee';
+/* th = thumbnail kind; replace with real teaser images when available */
+const P=[
+ {t:'Your 3D Tracker Can Do Better Without Retraining',img:'images/papers/lee2026tracker.jpg',a:'SeokYeong Lee, Jahyeok Koo, Seokju Cho, Ines Hyunsoo Kim, Junghyun Park, Jaeyeong Kim, Mungyeom Kim, Seungryong Kim',v:'Under review',y:2026,cat:'3D Detection & Tracking',th:'trk',first:1,l:[]},
+ {t:'Lip Forcing: Few-Step Autoregressive Diffusion for Real-time Lip Synchronization',a:'Paul Hyunbin Cho*, Jinhyuk Jang*, SeokYeong Lee, Joungbin Lee, Siyoon Jin, Heeseong Shin, Jung Yi, Yunjin Park, Chulmin Park, Seungryong Kim',v:'arXiv preprint, 2026',y:2026,cat:'Video Generation',th:'lip',l:[['ArXiv','https://arxiv.org/abs/2606.11180'],['project page','https://cvlab-kaist.github.io/LipForcing/'],['model','https://huggingface.co/JinhyukJang/lipforcing']],key:'cho2026lipforcing',bt:'journal={arXiv preprint arXiv:2606.11180}'},
+ {t:'PLOT: Pseudo-labeling via Object Tracking for Monocular 3D Object Detection',a:'SeokYeong Lee, Sithu Aung, Junyong Choi, Seungryong Kim, Ig-Jae Kim, Junghyun Cho',v:'ECCV 2026',vf:'European Conference on Computer Vision (ECCV), 2026',ac:1,y:2026,cat:'3D Detection & Tracking',th:'det',first:1,l:[['ArXiv','https://arxiv.org/abs/2507.02393']],key:'lee2026plot',bt:'booktitle={European Conference on Computer Vision (ECCV)}'},
+ {t:'Leveraging Intrinsic Components for Few-Shot Neural Radiance Fields in Unconstrained Illumination',a:'SeokYeong Lee, Junyong Choi, Seungryong Kim, Ig-Jae Kim, Junghyun Cho',vf:'IEEE Access, 2025',y:2025,cat:'3D Reconstruction',th:'nerf2',first:1,l:[['paper','https://doi.org/10.1109/ACCESS.2025.3610908']],key:'lee2025leveraging',bt:'journal={IEEE Access}'},
+ {t:'Channel-wise Noise Scheduled Diffusion for Inverse Rendering in Indoor Scenes',a:'Junyong Choi, Min-cheol Sagong, SeokYeong Lee, Seung-Won Jung, Ig-Jae Kim, Junghyun Cho',vf:'IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2025',ac:1,y:2025,cat:'Inverse Rendering',th:'diff',l:[['ArXiv','https://arxiv.org/abs/2503.09993'],['paper','https://openaccess.thecvf.com/content/CVPR2025/html/Choi_Channel-wise_Noise_Scheduled_Diffusion_for_Inverse_Rendering_in_Indoor_Scenes_CVPR_2025_paper.html']],key:'choi2025channelwise',bt:'booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},\n  pages={5773--5782}'},
+ {t:'MAIR++: Improving Multi-view Attention Inverse Rendering with Implicit Lighting Representation',a:'Junyong Choi, SeokYeong Lee, Haesol Park, Seung-Won Jung, Ig-Jae Kim, Junghyun Cho',vf:'IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI), 2025',ac:1,y:2025,cat:'Inverse Rendering',th:'ir2',l:[['ArXiv','https://arxiv.org/abs/2408.06707'],['project page','https://bring728.github.io/mairplusplus.project'],['paper','https://doi.org/10.1109/TPAMI.2025.3548679']],key:'choi2025mairpp',bt:'journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}'},
+ {t:'Few-shot Neural Radiance Fields Under Unconstrained Illumination',a:'SeokYeong Lee, Junyong Choi, Seungryong Kim, Ig-Jae Kim, Junghyun Cho',vf:'AAAI Conference on Artificial Intelligence (AAAI), 2024',ac:1,y:2024,cat:'3D Reconstruction',th:'nerf',first:1,l:[['ArXiv','https://arxiv.org/abs/2303.11728'],['project page','https://seokyeong94.github.io/ExtremeNeRF/'],['paper','https://doi.org/10.1609/aaai.v38i4.28075']],key:'lee2024extremenerf',bt:'booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},\n  volume={38},\n  number={4}'},
+ {t:'MAIR: Multi-view Attention Inverse Rendering with 3D Spatially-Varying Lighting Estimation',a:'Junyong Choi, SeokYeong Lee, Haesol Park, Seung-Won Jung, Ig-Jae Kim, Junghyun Cho',vf:'IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2023',ac:1,y:2023,cat:'Inverse Rendering',th:'ir',l:[['ArXiv','https://arxiv.org/abs/2303.12368'],['paper','https://openaccess.thecvf.com/content/CVPR2023/html/Choi_MAIR_Multi-View_Attention_Inverse_Rendering_With_3D_Spatially-Varying_Lighting_Estimation_CVPR_2023_paper.html']],key:'choi2023mair',bt:'booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},\n  pages={8392--8401}'},
+ {t:'Material Type Recognition of Indoor Scenes via Surface Reflectance Estimation',a:'SeokYeong Lee, Dongjin Lee, Hyun-Cheol Kim, Seungkyu Lee',vf:'IEEE Access, vol. 10, 2022',y:2022,cat:'Material & Reflectance',th:'mat',first:1,l:[['paper','https://doi.org/10.1109/ACCESS.2021.3137585']],key:'lee2022material',bt:'journal={IEEE Access},\n  volume={10},\n  pages={134--143}'},
+ {t:'Surface IR Reflectance Estimation and Material Recognition using ToF Camera',a:'SeokYeong Lee, Seungkyu Lee',vf:'International Conference on Pattern Recognition (ICPR), 2020',y:2020,cat:'Material & Reflectance',th:'tof',first:1,l:[['slides','https://ailb-web.ing.unimore.it/icpr/media/slides/11650.pdf'],['poster','https://ailb-web.ing.unimore.it/icpr/media/posters/11650.pdf']],key:'lee2020surface',bt:'booktitle={International Conference on Pattern Recognition (ICPR)},\n  pages={6463--6470}'},
+ {t:'IR Surface Reflectance Estimation and Material Type Recognition using Two-stream Net and Kinect Camera',a:'SeokYeong Lee, Hwasup Lim, SangChul Ahn, Seungkyu Lee',vf:'ACM SIGGRAPH 2019 Posters',y:2019,cat:'Material & Reflectance',th:'mat2',first:1,l:[['paper','https://doi.org/10.1145/3306214.3338557']],key:'lee2019ir',bt:'booktitle={ACM SIGGRAPH 2019 Posters}'}
+];
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+/* placeholder thumbnails, 160x100 */
+const TH={
+ ir:`<rect width="160" height="62" fill="#ece6dc"/><rect y="62" width="160" height="38" fill="#cfc6b6"/><ellipse cx="58" cy="82" rx="26" ry="5" fill="#000" opacity=".2"/><circle cx="52" cy="60" r="22" fill="url(#gS)"/><polygon points="98,46 118,37 138,46 118,55" fill="#a6ddd5"/><polygon points="98,46 118,55 118,80 98,71" fill="#3fa597"/><polygon points="118,55 138,46 138,71 118,80" fill="#277368"/><polygon points="80,0 160,0 160,100 120,100" fill="#8080ff" opacity=".9"/><polygon points="118,55 138,46 138,71 118,80" fill="#e08cff" clip-path="url(#cR)"/>`,
+ ir2:`<rect width="160" height="100" fill="#20222b"/><rect x="10" y="12" width="66" height="76" rx="3" fill="#e9e3d8"/><circle cx="43" cy="56" r="18" fill="url(#gS)"/><rect x="84" y="12" width="66" height="36" rx="3" fill="#ff6a2b"/><rect x="84" y="52" width="32" height="36" rx="3" fill="#8080ff"/><rect x="118" y="52" width="32" height="36" rx="3" fill="url(#gL)"/>`,
+ diff:`<rect width="160" height="100" fill="#f3f1ec"/>${[0,1,2,3,4].map(i=>`<rect x="${8+i*30}" y="22" width="26" height="56" rx="3" fill="${['#8080ff','#ff6a2b','#bbb','#e8d9a0','#555'][i]}" opacity="${.35+i*.16}"/>`).join('')}<path d="M8 90 C50 70, 110 96, 152 84" stroke="#2a7d92" stroke-width="2" fill="none" stroke-dasharray="3 3"/>`,
+ nerf:`<rect width="160" height="100" fill="#11152a"/><circle cx="80" cy="52" r="20" fill="#ffb27a"/><circle cx="80" cy="52" r="20" fill="url(#gL)" opacity=".6"/>${[[22,22,'#7ab8ff'],[138,22,'#ffd36a'],[24,84,'#ff8ab0'],[136,82,'#9cf0b0']].map(([x,y,c])=>`<polygon points="${x},${y} ${x+(x<80?18:-18)},${y-6} ${x+(x<80?18:-18)},${y+8}" fill="${c}"/><line x1="${x}" y1="${y}" x2="80" y2="52" stroke="${c}" stroke-width=".8" opacity=".6"/>`).join('')}`,
+ nerf2:`<rect width="160" height="100" fill="#f6f2ea"/>${[0,1,2].map(i=>`<rect x="${10+i*48}" y="18" width="44" height="44" rx="3" fill="${['#fbe3c4','#c9d6ff','#3a3a4a'][i]}"/><circle cx="${32+i*48}" cy="42" r="12" fill="${['#ff8a3d','#6f86ff','#c6a060'][i]}"/>`).join('')}<rect x="10" y="70" width="140" height="18" rx="3" fill="#ff6a2b" opacity=".85"/><text x="80" y="83" text-anchor="middle" font-size="10" fill="#fff" font-family="sans-serif">albedo</text>`,
+ det:`<rect width="160" height="58" fill="#cfe3f5"/><polygon points="0,100 160,100 104,58 56,58" fill="#5d6068"/><line x1="80" y1="100" x2="80" y2="60" stroke="#fff" stroke-width="2" stroke-dasharray="6 6"/><rect x="58" y="66" width="34" height="18" rx="4" fill="#c8402a"/><g fill="none" stroke="#ffd400" stroke-width="1.6"><polygon points="54,86 90,86 98,78 62,78"/><polygon points="54,64 90,64 98,56 62,56"/><line x1="54" y1="86" x2="54" y2="64"/><line x1="90" y1="86" x2="90" y2="64"/><line x1="98" y1="78" x2="98" y2="56"/><line x1="62" y1="78" x2="62" y2="56"/></g>`,
+ trk:`<rect width="160" height="100" fill="#14171f"/>${[[14,'#6cc3d8'],[32,'#ff8a5c'],[50,'#9cf0b0'],[68,'#e08cff'],[86,'#ffd36a']].map(([y,c],i)=>`<path d="M10 ${y} C50 ${y+20-i*6}, 100 ${y-14+i*5}, 148 ${y+6}" stroke="${c}" stroke-width="1.6" fill="none" opacity=".85"/><circle cx="148" cy="${y+6}" r="3.2" fill="${c}"/>`).join('')}`,
+ lip:`<rect width="160" height="100" fill="#f7efe9"/>${[0,1,2,3].map(i=>`<rect x="${8+i*37}" y="14" width="33" height="44" rx="3" fill="#e7c3ac"/><ellipse cx="${24.5+i*37}" cy="44" rx="8" ry="${[2,5,3.5,6][i]}" fill="#9b3b3b"/>`).join('')}<path d="M8 80 ${Array.from({length:36},(_,k)=>`L${8+k*4} ${80+Math.sin(k*1.3)*((k%5)+2)}`).join(' ')}" stroke="#2a7d92" stroke-width="1.6" fill="none"/>`,
+ mat:`<rect width="160" height="100" fill="#ece8e1"/>${[['#a5703f','wood'],['#b9c0c8','metal'],['#5e7d9a','fabric'],['#8b5a3c','leather'],['#e9e2cf','paper'],['#c6a5c9','wallpaper']].map(([c,n],i)=>`<rect x="${8+(i%3)*49}" y="${10+Math.floor(i/3)*44}" width="46" height="40" rx="3" fill="${c}"/><text x="${31+(i%3)*49}" y="${45+Math.floor(i/3)*44}" text-anchor="middle" font-size="8" fill="#fff" font-family="sans-serif" stroke="#0004" stroke-width=".3">${n}</text>`).join('')}`,
+ tof:`<rect width="160" height="100" fill="#1a1d26"/><rect x="12" y="38" width="30" height="20" rx="4" fill="#cfd3da"/><circle cx="34" cy="48" r="5" fill="#2a2d36"/>${[0,1,2,3].map(i=>`<path d="M44 48 Q${80+i*6} ${20+i*20} 140 ${24+i*18}" stroke="#ff4a4a" stroke-width="1" fill="none" opacity="${.9-i*.15}"/>`).join('')}<rect x="132" y="16" width="20" height="70" rx="2" fill="#7a5638"/>`,
+ mat2:`<rect width="160" height="100" fill="#2a2d36"/><rect x="10" y="14" width="66" height="72" rx="3" fill="#a5703f"/><rect x="84" y="14" width="66" height="72" rx="3" fill="url(#gL)"/><text x="43" y="96" text-anchor="middle" font-size="8" fill="#ddd" font-family="sans-serif">color</text><text x="117" y="96" text-anchor="middle" font-size="8" fill="#ddd" font-family="sans-serif">IR reflectance</text>`
+};
+const DEF=`<defs><radialGradient id="gS" cx=".5" cy=".5" r=".55" fx=".32" fy=".28"><stop offset="0" stop-color="#ffe1cf"/><stop offset=".45" stop-color="#ff6a2b"/><stop offset="1" stop-color="#9a300c"/></radialGradient><linearGradient id="gL" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#555"/></linearGradient><clipPath id="cR"><polygon points="80,0 160,0 160,100 120,100"/></clipPath></defs>`;
+
+/* real teaser figures in images/papers/, keyed by bibtex key */
+const IMG={lee2019ir:'images/papers/lee2019ir.jpg',lee2020surface:'images/papers/lee2020surface.jpg',lee2022material:'images/papers/lee2022material.jpg',choi2023mair:'images/papers/choi2023mair.jpg',lee2024extremenerf:'images/papers/lee2024extremenerf.jpg',choi2025mairpp:'images/papers/choi2025mairpp.jpg',choi2025channelwise:'images/papers/choi2025channelwise.jpg',lee2025leveraging:'images/papers/lee2025leveraging.jpg',lee2026plot:'images/papers/lee2026plot.jpg',cho2026lipforcing:'images/papers/cho2026lipforcing.jpg'};
+const thumb=k=>`<svg viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${DEF}${TH[k]||''}</svg>`;
+const M=['By Year','By Category','First Author'];
+let mode='By Year',open=null;
+const mEl=document.getElementById('modes'),pEl=document.getElementById('pubs');
+const bib=p=>`@${p.bt.startsWith('journal')?'article':'inproceedings'}{${p.key},\n  title={${p.t}},\n  author={${p.a.replace(/\*/g,'').split(', ').join(' and ')}},\n  ${p.bt},\n  year={${p.y}}\n}`;
+const item=p=>{const i=P.indexOf(p);return `<article class="pub">${(p.img||IMG[p.key])?`<div class="th im"><img src="${p.img||IMG[p.key]}" alt="" loading="lazy"></div>`:`<div class="th">${thumb(p.th)}</div>`}<div><h3>${esc(p.t)}</h3><p class="au">${esc(p.a).replace(ME,'<b>'+ME+'</b>')}</p><p class="vn${p.ac?' ac':''}">${esc(p.vf||p.v)}</p><div class="pl">${p.l.map(([k,u])=>`<a href="${esc(u)}">${esc(k)}</a>`).join('')}${p.key?`<button type="button" data-b="${i}" aria-expanded="${open===i}">bibtex</button>`:''}${p.a.includes('*')?'<em>* equal contribution</em>':''}</div></div>${open===i?`<pre>${esc(bib(p))}</pre>`:''}</article>`};
+const render=()=>{
+ mEl.innerHTML=M.map(m=>`<button type="button" data-m="${m}" aria-pressed="${m===mode}">${m}</button>`).join('');
+ const L=mode==='First Author'?P.filter(p=>p.first):P;
+ const key=mode==='By Category'?'cat':'y';
+ const groups=[...new Set(L.map(p=>p[key]))];
+ if(key==='cat')groups.sort();
+ pEl.innerHTML=groups.map(g=>{const G=L.filter(p=>p[key]===g);return `<h3 class="grp">${esc(g)}</h3>${G.map(item).join('')}`}).join('');
+};
+mEl.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;mode=b.dataset.m;open=null;render()});
+pEl.addEventListener('click',e=>{const b=e.target.closest('button[data-b]');if(!b)return;const i=+b.dataset.b;open=open===i?null:i;render()});
+render();
+}
+</script>
+</body>
+</html>
